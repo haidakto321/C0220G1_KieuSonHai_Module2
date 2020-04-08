@@ -9,7 +9,7 @@ public class XoaPhanTu {
         boolean check = false;
 
         for (int i = 0; i < arr.length; i++) {
-            System.out.print(arr[i]+" ");
+            System.out.print("Mảng ban đầu: "+arr[i]+" ");
         }
 
         System.out.println("Enter the number need delete: ");
