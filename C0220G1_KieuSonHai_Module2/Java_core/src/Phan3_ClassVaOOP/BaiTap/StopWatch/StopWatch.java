@@ -1,4 +1,4 @@
-package Phan3_ClassVaOOP.BaiTap;
+package Phan3_ClassVaOOP.BaiTap.StopWatch;
 
 
 public class StopWatch {

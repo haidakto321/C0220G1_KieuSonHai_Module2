@@ -1,6 +1,4 @@
-package Phan3_ClassVaOOP.BaiTap.QuadraticEquation;
-
-import Phan3_ClassVaOOP.BaiTap.StopWatch;
+package Phan3_ClassVaOOP.BaiTap.StopWatch;
 
 public class SelectionSort {
     public static void main(String[] args) {
