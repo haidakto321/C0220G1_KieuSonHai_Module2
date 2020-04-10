@@ -7,9 +7,9 @@ public class XoaPhanTu {
         Scanner input=new Scanner(System.in);
         int[] arr = {2,7,8,10,17,22};
         boolean check = false;
-
+        System.out.println("Mảng ban đầu: ");
         for (int i = 0; i < arr.length; i++) {
-            System.out.print("Mảng ban đầu: "+arr[i]+" ");
+            System.out.print(arr[i]+" ");
         }
 
         System.out.println("Enter the number need delete: ");

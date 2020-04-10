@@ -8,7 +8,7 @@ public class CountStudentPassing {
         int size;
         int[] array;
         do {
-            System.out.print("Enter a size: ");
+            System.out.println("Enter a size: ");
             size = input.nextInt();
             if (size > 30)
                 System.out.println("Size does not exceed 30");
@@ -25,7 +25,7 @@ public class CountStudentPassing {
         int count = 0;
         System.out.print("List of mark: ");
         for (int j = 0; j < array.length; j++) {
-            System.out.print(array[j] + "\t");
+            System.out.print(array[j] + " ");
             if (array[j] >= 5 && array[j] <= 10)
                 count++;
         }

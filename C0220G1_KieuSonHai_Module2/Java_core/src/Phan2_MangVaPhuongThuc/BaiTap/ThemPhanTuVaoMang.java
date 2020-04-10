@@ -1,5 +1,7 @@
 package Phan2_MangVaPhuongThuc.BaiTap;
 
+import java.sql.Array;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ThemPhanTuVaoMang {
@@ -11,7 +13,7 @@ public class ThemPhanTuVaoMang {
         num = input.nextInt();
         System.out.println("Muon them tai vi tri nao: ");
         index = input.nextInt();
-        if (index <= 1 || index >= arr.length - 1) {
+        if (index < 1 || index > arr.length - 1) {
             System.out.println("Khong chen duoc!");
         }
         for (int i = 0; i < arr.length; i++) {

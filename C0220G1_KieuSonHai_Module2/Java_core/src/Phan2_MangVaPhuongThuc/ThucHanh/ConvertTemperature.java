@@ -8,7 +8,6 @@ public class ConvertTemperature {
         double fahrenheit;
         double celsius;
         int choice;
-
         do {
             System.out.println("Menu.");
             System.out.println("1. Fahrenheit to Celsius");
