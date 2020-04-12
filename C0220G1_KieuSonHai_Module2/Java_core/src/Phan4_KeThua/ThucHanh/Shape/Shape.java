@@ -1,10 +1,13 @@
-package Phan4_KeThua.ThucHanh;
+package Phan4_KeThua.ThucHanh.Shape;
 
 public class Shape {
     public String color = "green";
     public boolean filled = true;
 
-    public Shape(String color, boolean filled) {
+    Shape() {
+
+    }
+    public Shape(String red, boolean b) {
         this.color = color;
         this.filled = filled;
     }
@@ -21,6 +24,7 @@ public class Shape {
     public void setFilled(boolean filled) {
         this.filled = filled;
     }
+    
     @Override
     public String toString() {
         return "A Shape with color of "
