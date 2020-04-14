@@ -1,6 +1,6 @@
-package Phan5_AdvancedObjectOrientedDesign.BaiTap.InterfaceResizeable.Shapes;
+package Phan5_AdvancedObjectOrientedDesign.BaiTap.InterfaceColorable;
 
-public abstract class Shape  {
+public class Shape {
     private String color = "green";
     private boolean filled = true;
 
@@ -35,6 +35,4 @@ public abstract class Shape  {
                 + " and "
                 + (isFilled() ? "filled" : "not filled");
     }
-    public abstract void resize(double radius);
-//    public abstract String getArea();
 }

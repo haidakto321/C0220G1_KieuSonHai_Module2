@@ -22,11 +22,12 @@ public class Circle extends Shape implements Resizeable {
     }
 
     public void setRadius(double radius) {
+
         this.radius = radius;
     }
 
-    public double getArea() {
-        return radius * radius * Math.PI;
+    public String getArea() {
+        return "Dien tich: "+radius * radius * Math.PI;
     }
 
     public double getPerimeter() {
@@ -43,16 +44,11 @@ public class Circle extends Shape implements Resizeable {
 
     @Override
     public void resize(double percent) {
-        System.out.println(this.getArea()+this.getArea()*percent);
-    }
-
-    @Override
-    public double getSize() {
-        return 0;
-    }
-
-    @Override
-    public void setSize(double size) {
-
+        System.out.println("Hinh tron: "
+                +"\nBán kính truoc khi thay đổi: " + (this.radius)
+                +"\nDien tich truoc khi thay doi: "+this.getArea());
+        this.radius=this.radius + this.radius * percent;
+        System.out.println("\nBán kính sau khi thay đổi: " + (this.radius)
+        +"\nDien tich sau khi thay doi: "+this.getArea());
     }
 }

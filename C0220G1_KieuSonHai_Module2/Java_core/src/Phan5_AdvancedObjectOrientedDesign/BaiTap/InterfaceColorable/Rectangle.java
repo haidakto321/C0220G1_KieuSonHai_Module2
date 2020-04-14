@@ -1,8 +1,6 @@
-package Phan5_AdvancedObjectOrientedDesign.BaiTap.InterfaceResizeable.Shapes;
+package Phan5_AdvancedObjectOrientedDesign.BaiTap.InterfaceColorable;
 
-import Phan5_AdvancedObjectOrientedDesign.BaiTap.InterfaceResizeable.Resizeable;
-
-public class Rectangle extends Shape implements Resizeable {
+public class Rectangle extends Shape {
     private double width = 1.0;
     private double length = 1.0;
 
@@ -37,7 +35,7 @@ public class Rectangle extends Shape implements Resizeable {
     }
 
     public double getArea() {
-        return this.width * this.length;
+        return width * this.length;
     }
 
     public double getPerimeter() {
@@ -52,18 +50,5 @@ public class Rectangle extends Shape implements Resizeable {
                 + getLength()
                 + ", which is a subclass of "
                 + super.toString();
-    }
-    @Override
-    public void resize(double percent) {
-        System.out.println("Hinh chu nhat: "+
-                "\nChieu dai trc khi thay doi: "
-                +(this.length)+" .Chieu rong trc khi thay doi: "
-                +(this.width)+" \nDien tich truoc khi thay doi: "+this.getArea());
-        this.length=this.length+this.length*percent;
-        this.width=this.width+this.width*percent;
-        System.out.println("\nChieu dai sau khi thay doi: "
-                +(this.length)+" .Chieu rong sau khi thay doi: "
-                +(this.width)
-                +"\nDien tich sau khi thay doi: "+this.getArea());
     }
 }
