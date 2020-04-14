@@ -1,7 +1,6 @@
-package Phan5_AdvancedObjectOrientedDesign.ThucHanh.InterfaceComparator.Circle;
+package Phan5_AdvancedObjectOrientedDesign.BaiTap.InterfaceResizeable.Shapes;
 
 import Phan5_AdvancedObjectOrientedDesign.BaiTap.InterfaceResizeable.Resizeable;
-import Phan5_AdvancedObjectOrientedDesign.ThucHanh.InterfaceComparator.Shape;
 
 public class Circle extends Shape implements Resizeable {
     private double radius = 1.0;
@@ -44,7 +43,7 @@ public class Circle extends Shape implements Resizeable {
 
     @Override
     public void resize(double percent) {
-
+        System.out.println(this.getArea()+this.getArea()*percent);
     }
 
     @Override
