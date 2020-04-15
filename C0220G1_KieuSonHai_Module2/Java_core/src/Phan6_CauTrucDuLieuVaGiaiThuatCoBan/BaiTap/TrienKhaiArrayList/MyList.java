@@ -1,7 +1,7 @@
 package Phan6_CauTrucDuLieuVaGiaiThuatCoBan.BaiTap.TrienKhaiArrayList;
 
+
 import java.util.Arrays;
-import java.util.Objects;
 
 public class MyList<E> {
     private int size = 0;
@@ -10,12 +10,14 @@ public class MyList<E> {
     private E[] data;
 
     public MyList() {
-        elements = new Objects[DEFAULT_CAPACITY];
+        elements = new Object[DEFAULT_CAPACITY];
     }
 
     public void ensureCapacity(int minCapacity) {
         int newSize = elements.length + minCapacity;
-        System.arraycopy(elements,0,elements,0,newSize);
+        //hàm arraycopy thằng element là null nên lỗi
+//        System.arraycopy(elements,0,elements,0,newSize);
+        elements= Arrays.copyOf(elements,newSize);
     }
     public int size() {
         return size=elements.length;
@@ -28,9 +30,9 @@ public class MyList<E> {
     public void add(int index, E element) {
         ensureCapacity(1);
         for (int i = size - 1; i >= index; i--) {
-            data[i + 1] = data[i];
+            elements[i + 1] = elements[i];
         }
-        data[index] = element;
+        elements[index] = element;
         size++;
     }
 
@@ -44,7 +46,7 @@ public class MyList<E> {
 
     public boolean contains(E o) {
         for (int i = 0; i < size; i++) {
-            if (o.equals(data[i])) {
+            if (o.equals(elements[i])) {
                 return true;
             }
         }
@@ -53,7 +55,7 @@ public class MyList<E> {
 
     public int indexOf(E e) {
         for (int i = 0; i < size; i++) {
-            if (e.equals(data[i])) {
+            if (e.equals(elements[i])) {
                 return i;
             }
         }
@@ -73,13 +75,15 @@ public class MyList<E> {
         }
     }
 
-    public E get(int index) {
+    public Object get(int index) {
         checkIndex(index);
-        return data[index];
+        return  elements[index];
     }
 
     public void clear() {
-        data = (E[]) new Objects[DEFAULT_CAPACITY];
+        for (int i = 0; i < size; i++)
+            elements[i] = null;
+
         size = 0;
     }
 }

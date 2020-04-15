@@ -7,9 +7,25 @@ public class MyListTest {
         listInteger.add(8);
         listInteger.add(9);
         listInteger.add(10);
-        listInteger.add(11);
-//        System.out.println(listInteger.get(4));
-//        System.out.println(listInteger.get(1));
-//        System.out.println(listInteger.get(2));
+        System.out.println("Mang: ");
+        for(int i=0;i<listInteger.size();i++) {
+            System.out.println(listInteger.indexOf(i));
+        }
+
+        System.out.println("Mang co kich thuoc: "+listInteger.size());
+
+        if(listInteger.contains(5)) {
+            System.out.println("Phan tu co trong mang");
+        } else {
+            System.out.println("Phan tu ko nam trong mang");
+        }
+
+        System.out.println("Phan tu nam tai index: "+listInteger.indexOf(7));
+
+        System.out.println(listInteger.get(3));
+
+        listInteger.clear();
+        System.out.println(listInteger.size());
+
     }
 }
