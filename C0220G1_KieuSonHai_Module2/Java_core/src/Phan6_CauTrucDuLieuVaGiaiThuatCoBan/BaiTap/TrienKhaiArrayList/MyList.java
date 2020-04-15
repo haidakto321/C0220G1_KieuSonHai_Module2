@@ -15,7 +15,7 @@ public class MyList<E> {
 
     public void ensureCapacity(int minCapacity) {
         int newSize = elements.length + minCapacity;
-        elements=Arrays.copyOf(elements,newSize);
+        System.arraycopy(elements,0,elements,0,newSize);
     }
     public int size() {
         return size=elements.length;
@@ -61,7 +61,7 @@ public class MyList<E> {
     }
 
     public boolean add(E e) {
-        if(size == elements.length)
+//        if(size == elements.length)
         ensureCapacity(1);
         elements[size++]=e;
         return true;
