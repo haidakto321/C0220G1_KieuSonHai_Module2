@@ -5,9 +5,9 @@ import java.util.Arrays;
 
 public class MyList<E> {
     private int size = 0;
-    private static final int DEFAULT_CAPACITY = 10;
+    private static final int DEFAULT_CAPACITY = 0;
     private Object elements[];
-    private E[] data;
+
 
     public MyList() {
         elements = new Object[DEFAULT_CAPACITY];
@@ -36,12 +36,12 @@ public class MyList<E> {
         size++;
     }
 
-    public Object clone() {
-        MyList<E> tmp = new MyList<>();
-        tmp.elements = Arrays.copyOf(elements, size);
+    public MyList<E> clone() {
+        MyList<E> tmp = new MyList<E>();
+        tmp.elements = Arrays.copyOf(elements,size);
         tmp.size = size;
 
-        return tmp;
+        return  tmp;
     }
 
     public boolean contains(E o) {

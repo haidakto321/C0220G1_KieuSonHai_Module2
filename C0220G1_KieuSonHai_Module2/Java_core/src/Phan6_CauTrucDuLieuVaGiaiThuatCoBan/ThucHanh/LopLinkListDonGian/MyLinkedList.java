@@ -1,12 +1,6 @@
 package Phan6_CauTrucDuLieuVaGiaiThuatCoBan.ThucHanh.LopLinkListDonGian;
 
-public class MyLinkedList {
-    private  Node head;
-    private  int numNodes;
-
-    public MyLinkedList(Object data) {
-        head = new Node(data);
-    }
+public class MyLinkedList <E>{
 
     private class Node {
         private Node next;
@@ -20,26 +14,30 @@ public class MyLinkedList {
             return this.data;
         }
     }
+    private  Node head;
+    private  int numNodes;
+    public MyLinkedList() {
 
-    public void add(int index,Object data) {
-        Node temp=head;
-        Node holder;
-        for(int i=0;i<index-1 && temp.next !=null;i++) {
-            temp=temp.next;
-        }
-        holder =temp.next;
-        temp.next=new Node(data);
-        temp.next.next=holder;
-        numNodes++;
     }
 
-    public void addFirst(Object data) {
+//    public MyLinkedList(Object data) {
+//        head = new Node(data);
+//    }
+
+    public void addFirst(E element) {
         Node temp=head;
-        head=new Node(data);
+        head=new Node(element);
         head.next=temp;
         numNodes++;
     }
-
+    public void addLast(E element) {
+        Node temp=head;
+        while (temp.next!=null) {
+            temp=temp.next;
+        }
+        temp.next=new Node(element);
+        numNodes++;
+    }
     public Node get(int index) {
         Node temp=head;
         for(int i=0;i<index;i++) {
@@ -47,6 +45,19 @@ public class MyLinkedList {
         }
         return temp;
     }
+
+    public void add(int index,E element) {
+        Node temp=head;
+        Node holder;
+        for(int i=0;i<index-1 && temp.next !=null;i++) {
+            temp=temp.next;
+        }
+        holder =temp.next;
+        temp.next=new Node(element);
+        temp.next.next=holder;
+        numNodes++;
+    }
+
     public void printList() {
         Node temp=head;
         while (temp !=null) {
