@@ -38,7 +38,8 @@ public class MyList<E> {
 
     public MyList<E> clone() {
         MyList<E> tmp = new MyList<E>();
-        tmp.elements = Arrays.copyOf(elements,size);
+//        tmp.elements = Arrays.copyOf(elements,size);
+        tmp.elements = elements;
         tmp.size = size;
 
         return  tmp;
@@ -84,6 +85,6 @@ public class MyList<E> {
         for (int i = 0; i < size; i++)
             elements[i] = null;
 
-        size = 0;
+//        size = 0;
     }
 }

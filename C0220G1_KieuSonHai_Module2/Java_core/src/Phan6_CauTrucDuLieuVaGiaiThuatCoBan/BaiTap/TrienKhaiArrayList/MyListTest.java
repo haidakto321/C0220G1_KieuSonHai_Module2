@@ -27,7 +27,7 @@ public class MyListTest {
         MyList<Integer> list2 = listInteger.clone();
         System.out.println("Mang copy: ");
         for (int i = 0; i < list2.size(); i++) {
-            System.out.print(list2.get(i));
+            System.out.print(list2.get(i)+" ");
         }
         listInteger.clear();
         System.out.println("\n"+listInteger.get(1));
