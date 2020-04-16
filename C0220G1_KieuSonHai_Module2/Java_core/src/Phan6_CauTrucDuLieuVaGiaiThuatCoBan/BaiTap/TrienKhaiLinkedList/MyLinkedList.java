@@ -141,6 +141,16 @@ public class MyLinkedList<E> {
         return -1;
     }
 
+    public MyLinkedList<E> getLast() {
+        Node temp=head;
+        for(int i=0;i<numNodes;i++) {
+            if(temp.next==null) {
+                return (MyLinkedList<E>) temp.data;
+            }
+        }
+
+        return null;
+    }
     public void clear() {
         Node temp=head;
         for(int i=0;i<numNodes;i++) {
