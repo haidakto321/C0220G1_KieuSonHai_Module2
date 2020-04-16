@@ -40,8 +40,8 @@ public class MyLinkedList_Test {
         myLinkedList.add(2,student4);
         myLinkedList.remove(1);
 
-        student1.getName();
-        student3.getName();
+        System.out.println(student1.getName());
+        System.out.println(student3.getName());
 
         MyLinkedList<Student> cloneLinkedList=myLinkedList.clone();
 //        for(int i=0;i<cloneLinkedList.size();i++) {
@@ -49,6 +49,8 @@ public class MyLinkedList_Test {
 //            System.out.println(student.getName());
 //        }
 
+        myLinkedList.clear();
+        System.out.println(myLinkedList.size());
 
     }
 }
