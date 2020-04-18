@@ -44,10 +44,12 @@ public class MyLinkedList_Test {
         System.out.println(student3.getName());
 
         MyLinkedList<Student> cloneLinkedList=myLinkedList.clone();
+        cloneLinkedList.printList();
 //        for(int i=0;i<cloneLinkedList.size();i++) {
 //            Student student=(Student) cloneLinkedList.get(i);
 //            System.out.println(student.getName());
 //        }
+//        System.out.println(cloneLinkedList.get(2));
 
         myLinkedList.clear();
         System.out.println(myLinkedList.size());

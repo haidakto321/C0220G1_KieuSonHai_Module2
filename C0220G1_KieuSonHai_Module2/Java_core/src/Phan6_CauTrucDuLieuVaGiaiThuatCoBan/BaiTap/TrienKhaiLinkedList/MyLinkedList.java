@@ -151,6 +151,18 @@ public class MyLinkedList<E> {
 
         return null;
     }
+
+    public void printList() {
+        Node temp = head;
+        System.out.println("=======HEAD "+head.data);
+        int i = 0;
+        while (temp != null && i< numNodes) {
+            System.out.println("i = "+i+" value = "+temp.getData());
+            temp = temp.next;
+            i++;
+        }
+    }
+
     public void clear() {
         Node temp=head;
         for(int i=0;i<numNodes;i++) {
