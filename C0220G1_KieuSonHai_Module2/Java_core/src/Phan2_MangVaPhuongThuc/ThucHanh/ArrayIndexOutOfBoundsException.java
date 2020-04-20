@@ -1,4 +1,4 @@
-package Phan2_MangVaPhuongThuc.ThucHanh;
+package src.Phan2_MangVaPhuongThuc.ThucHanh;
 
 import java.util.Random;
 import java.util.Scanner;
