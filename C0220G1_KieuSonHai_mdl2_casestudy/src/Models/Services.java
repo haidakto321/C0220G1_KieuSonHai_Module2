@@ -6,17 +6,17 @@ public abstract class Services {
     private double cost;
     private int maxPeople;
     private String rentType;
-    private String id;
+    private String serviceCode;
     public Services() {
     }
 
-    public Services(String name, double areaUsed, double cost, int maxPeople, String rentType, String id) {
+    public Services(String name, double areaUsed, double cost, int maxPeople, String rentType, String serviceCode) {
         this.name = name;
         this.areaUsed = areaUsed;
         this.cost = cost;
         this.maxPeople = maxPeople;
         this.rentType = rentType;
-        this.id = id;
+        this.serviceCode = serviceCode;
     }
 
     public String getName() {
@@ -59,12 +59,12 @@ public abstract class Services {
         this.rentType = rentType;
     }
 
-    public String getId() {
-        return id;
+    public String getServiceCode() {
+        return serviceCode;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setServiceCode(String serviceCode) {
+        this.serviceCode = serviceCode;
     }
 
     public abstract String showInfor();
