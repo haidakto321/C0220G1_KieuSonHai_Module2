@@ -6,11 +6,12 @@ public class House extends Services{
     private String otherUtilities="Các tiện ích";
     private int floors=2;
 
-    public House() {
-    }
-
-    public House(String name, double areaUsed, double cost, int maxPeople, String rentType, String id) {
-        super(name, areaUsed, cost, maxPeople, rentType, id);
+    public House(String id, String name, String areaUsed, double cost, int maxPeople, String rentType,
+                 String serviceCode,  String detail, String otherUtilities, int floors) {
+        super(id, name, areaUsed, cost, maxPeople, rentType, serviceCode);
+        this.detail = detail;
+        this.otherUtilities = otherUtilities;
+        this.floors = floors;
     }
 
     public String getDetail() {

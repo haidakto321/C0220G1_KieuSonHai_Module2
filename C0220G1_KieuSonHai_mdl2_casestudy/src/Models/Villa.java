@@ -4,14 +4,27 @@ public class Villa extends Services {
     private String name="Villa";
     private String detail="Detail";
     private String otherUtilities="Các tiện ích";
-    private double areaOfPool=20.0;
+    private String poolArea="20.0m2";
     private int floors=4;
-    public Villa(String serviceCode, double areaUsed, double cost, int maxPeople, String rentType, String otherUtilities, double poolArea, int floors) {
+
+    public Villa(String id,String name, String areaUsed, double cost, int maxPeople, String rentType, String serviceCode,
+                 String detail,String otherUtilities, String poolArea, int floors) {
+        super(id,name, areaUsed, cost, maxPeople, rentType, serviceCode);
+
+        this.detail = detail;
+        this.otherUtilities = otherUtilities;
+        this.poolArea = poolArea;
+        this.floors = floors;
     }
 
-    public Villa(String name, double areaUsed, double cost, int maxPeople, String rentType, String id) {
-        super(name, areaUsed, cost, maxPeople, rentType, id);
-//        this.detail()=detail;
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDetail() {
@@ -30,12 +43,12 @@ public class Villa extends Services {
         this.otherUtilities = otherUtilities;
     }
 
-    public double getAreaOfPool() {
-        return areaOfPool;
+    public String getPoolArea() {
+        return poolArea;
     }
 
-    public void setAreaOfPool(double areaOfPool) {
-        this.areaOfPool = areaOfPool;
+    public void setPoolArea(String poolArea) {
+        this.poolArea = poolArea;
     }
 
     public int getFloors() {
@@ -55,7 +68,7 @@ public class Villa extends Services {
                 +"\nRent type: "+this.getRentType()
                 +"Tiêu chuẩn phòng: "+this.getDetail()
                 +"Tiện ích khác: "+this.getOtherUtilities()
-                +"Area of pool: "+this.getAreaOfPool()
+                +"Area of pool: "+this.getPoolArea()
                 +"Number of floors: "+this.getFloors();
     }
 }

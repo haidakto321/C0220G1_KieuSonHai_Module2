@@ -1,16 +1,16 @@
 package Models;
 
 public abstract class Services {
+    private String id;
     private String name;
-    private double areaUsed;
+    private String areaUsed;
     private double cost;
     private int maxPeople;
     private String rentType;
     private String serviceCode;
-    public Services() {
-    }
 
-    public Services(String name, double areaUsed, double cost, int maxPeople, String rentType, String serviceCode) {
+    public Services(String id, String name, String areaUsed, double cost, int maxPeople, String rentType, String serviceCode) {
+        this.id= this.id;
         this.name = name;
         this.areaUsed = areaUsed;
         this.cost = cost;
@@ -27,16 +27,16 @@ public abstract class Services {
         this.name = name;
     }
 
-    public double getAreaUsed() {
-        return areaUsed;
+    public String getAreaUsed() {
+        return String.valueOf(areaUsed);
     }
 
-    public void setAreaUsed(double areaUsed) {
+    public void setAreaUsed(String areaUsed) {
         this.areaUsed = areaUsed;
     }
 
     public double getCost() {
-        return cost;
+        return this.cost;
     }
 
     public void setCost(double cost) {
@@ -60,7 +60,7 @@ public abstract class Services {
     }
 
     public String getServiceCode() {
-        return serviceCode;
+        return this.serviceCode;
     }
 
     public void setServiceCode(String serviceCode) {
