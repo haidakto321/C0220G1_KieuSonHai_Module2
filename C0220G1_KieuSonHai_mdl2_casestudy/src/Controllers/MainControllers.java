@@ -1,10 +1,9 @@
 package Controllers;
 
 import Commons.Validation;
-import Models.House;
-import Models.Room;
-import Models.Villa;
+import Models.*;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -19,6 +18,7 @@ public class MainControllers extends Validation {
     ArrayList<Villa> listVilla = new ArrayList<>();
     ArrayList<House> listHouse = new ArrayList<>();
     ArrayList<Room> listRoom = new ArrayList<>();
+    ArrayList<Customer> listCustomer = new ArrayList<>();
     private boolean isError;
 
     public MainControllers() {
@@ -34,10 +34,26 @@ public class MainControllers extends Validation {
                 "7.Booking Movie Ticket 4D\n" +
                 "8.Find Employee\n" +
                 "9.Exit\n");
-        int select = input.nextInt();
+        String select = input.nextLine();
         switch (select) {
-            case 1:
+            case "1":
                 this.addNewServices();
+                this.displayMainMenu();
+                break;
+            case "2":
+                this.showServices();
+                this.displayMainMenu();
+                break;
+            case "3":
+                this.addNewCustomer();
+                this.displayMainMenu();
+                break;
+            case "4":
+                this.showInformationCustomers();
+                this.displayMainMenu();
+                break;
+            case "5":
+                this.addNewBook();
                 this.displayMainMenu();
                 break;
         }
@@ -80,19 +96,142 @@ public class MainControllers extends Validation {
         } while (isError);
     }
 
+    public void addNewCustomer() throws IOException {
+        WriteCsvCustomer writeCsvCustomer = new WriteCsvCustomer();
+        String nameCustomer = inputNameCustomer();
+        String birthday = inputBirthday();
+        String gender = inputGender();
+        String cmnd = inputCMND();
+        String numberPhone = inputPhoneNumber();
+        String email = inputEmail();
+        String typeOfCustomer = inputTypeOfCustomer();
+        String address = inputAddress();
+
+        Customer customer = new Customer(nameCustomer, birthday, gender, cmnd, numberPhone, email, typeOfCustomer, address);
+        listCustomer.add(customer);
+        writeCsvCustomer.writeCsvCustomerFile(listCustomer);
+        System.out.println("Đã thêm mới customer!");
+    }
+
+    public void showInformationCustomers() throws FileNotFoundException {
+        ReadCsvCustomer readCsvCustomer = new ReadCsvCustomer();
+
+        listCustomer = readCsvCustomer.readCsvCustomer();
+
+        for (Customer customer : listCustomer
+        ) {
+            System.out.println("-------------------------------------------------------");
+            System.out.println(customer.showInfor());
+            System.out.println("-------------------------------------------------------");
+        }
+    }
+
+    public void addNewBook() throws IOException {
+        ReadCsvCustomer readCsvCustomer = new ReadCsvCustomer();
+        listCustomer = readCsvCustomer.readCsvCustomer();
+        for (int i = 0; i < listCustomer.size(); i++) {
+            System.out.println((i + 1) + "." + listCustomer.get(i).getName() + "  " + listCustomer.get(i).getCMND() + "  "
+                    + listCustomer.get(i).getBirthday());
+            System.out.println("---------------------------------------------------------");
+        }
+        Customer customer = null;
+        String choose;
+        boolean flag = true;
+        do {
+            System.out.print("Chọn nguoi dung muon book dich vu: ");
+            choose = input.nextLine();
+            if (Integer.parseInt(choose) > 0 && Integer.parseInt(choose) <= listCustomer.size()) {
+                customer = listCustomer.get(Integer.parseInt(choose) - 1);
+                flag = false;
+            } else {
+                System.out.println("Giá trị nhập vào không chính xác. Vui lòng nhập lại");
+            }
+        } while (flag);
+        newBookingCustomer(customer);
+    }
+    public void newBookingCustomer(Customer customer) throws IOException {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("1.Booking Villa\n" +
+                "2.Booking House\n" +
+                "3.Booking Room\n" +
+                "4.Back to menu\n" +
+                "5.exit\n");
+        String choose;
+        boolean flag = true;
+        do {
+            System.out.print("Chọn chức năng bạn muốn sử dụng: ");
+            choose = input.nextLine();
+            switch (choose) {
+                case "1":
+                    this.addServicesVilla(customer);
+                    this.displayMainMenu();
+                    break;
+                case "2":
+                    this.addServicesHouse();
+                    this.displayMainMenu();
+                    break;
+                case "3":
+                    this.addServicesRoom();
+                    this.displayMainMenu();
+                    break;
+                case "4":
+                    this.displayMainMenu();
+                    break;
+                case "5":
+                    flag = false;
+                    System.exit(1);
+                    break;
+                default:
+                    System.out.println("Giá trị nhập vào không chính xác. Vui lòng nhập lại");
+                    this.addNewBook();
+                    break;
+            }
+        } while (flag);
+    }
+    public void addServicesVilla(Customer customer) throws IOException {
+        WriteCsvBooking writeCsvBooking = new WriteCsvBooking();
+        ReadCsvVilla readCsvVilla = new ReadCsvVilla();
+        listVilla = readCsvVilla.readCsvVilla();
+        for (int i = 0; i < listVilla.size(); i++) {
+            System.out.println((i + 1) + "." + listVilla.get(i).getId() + "  " + listVilla.get(i).getServiceCode() + "  "
+                    + listVilla.get(i).getRoomStandard() + "  " + listVilla.get(i).getCost() + " USD");
+            System.out.println("-------------------------------------------------------");
+        }
+        String choose;
+        Villa services = null;
+        boolean flag = true;
+        do {
+            System.out.print("Chọn dich vu Villa muon book: ");
+            choose = input.nextLine();
+            if (Integer.parseInt(choose) > 0 && Integer.parseInt(choose) <= listVilla.size()) {
+                services = listVilla.get(Integer.parseInt(choose) - 1);
+                flag = false;
+            } else {
+                System.out.println("Giá trị nhập vào không chính xác. Vui lòng nhập lại");
+            }
+        } while (flag);
+        customer.setServices(services);
+        writeCsvBooking.writeCsvBookingVillaFile(customer, services);
+    }
+    public void addServicesHouse() {
+
+    }
+    public void addServicesRoom() {
+
+    }
     public void addNewVilla() throws IOException {
         String character = "V";
         String name = "Villa";
-        String id=inputId();
-        String serviceCode=inputServiceCode(character);
-        String areaUsed=inputAreaUsed();
-        double cost=inputCost();
-        int maxPeople=inputMaxPeople();
-        String detail=inputDetail();
-        String rentType=inputRentType();
-        String otherUtilities=inputOtherUltilities();
-        String poolArea=inputPoolArea();
-        int floors=inputFloors();
+        String id = inputId();
+        String serviceCode = inputServiceCode(character);
+        String areaUsed = inputAreaUsed();
+        double cost = inputCost();
+        int maxPeople = inputMaxPeople();
+        String rentType = inputRentType();
+        String roomStandard = inputRoomStandard();
+        String otherUtilities = inputOtherUltilities();
+        String poolArea = inputPoolArea();
+        int floors = inputFloors();
 //        System.out.println("Mã dịch vụ: ");
 //        String serviceCode = input.nextLine();
 //        System.out.println("Diện tích sử dụng: ");
@@ -109,8 +248,8 @@ public class MainControllers extends Validation {
 //        String poolArea = input.nextLine();
 //        System.out.println("Số tầng:  ");
 //        int floors = Integer.parseInt(input.nextLine());
-        Villa villa = new Villa(id,name,  areaUsed,  cost,  maxPeople,  rentType,  serviceCode,
-                    detail,otherUtilities,  poolArea,  floors);
+        Villa villa = new Villa(id, name, areaUsed, cost, maxPeople, rentType, serviceCode,
+                roomStandard, otherUtilities, poolArea, floors);
         listVilla.add(villa);
         WriteCsvVilla.writeCsvVillaFile(listVilla);
         System.out.println("Đã thêm mới villa!");
@@ -119,17 +258,17 @@ public class MainControllers extends Validation {
     public void addNewHouse() {
         String character = "H";
         String name = "House";
-        String id=inputId();
-        String serviceCode=inputServiceCode(character);
-        String areaUsed=inputAreaUsed();
-        double cost=inputCost();
-        int maxPeople=inputMaxPeople();
-        String detail=inputDetail();
-        String rentType=inputRentType();
-        String otherUtilities=inputOtherUltilities();
-        int floors=inputFloors();
-        House house=new House( id,  name,  areaUsed,  cost,  maxPeople,  rentType,
-                 serviceCode,   detail,  otherUtilities,  floors);
+        String id = inputId();
+        String serviceCode = inputServiceCode(character);
+        String areaUsed = inputAreaUsed();
+        double cost = inputCost();
+        int maxPeople = inputMaxPeople();
+        String roomStandard = inputRoomStandard();
+        String rentType = inputRentType();
+        String otherUtilities = inputOtherUltilities();
+        int floors = inputFloors();
+        House house = new House(id, name, areaUsed, cost, maxPeople, rentType,
+                serviceCode, roomStandard, otherUtilities, floors);
         listHouse.add(house);
         WriteCsvHouse.writeCsvHouse(listHouse);
         System.out.println("Da them moi House!");
@@ -138,14 +277,14 @@ public class MainControllers extends Validation {
     public void addNewRoom() {
         String character = "R";
         String name = "Room";
-        String id=inputId();
-        String serviceCode=inputServiceCode(character);
-        String areaUsed=inputAreaUsed();
-        double cost=inputCost();
-        int maxPeople=inputMaxPeople();
-        String rentType=inputRentType();
-        String freeService=inputFreeService();
-        Room room=new Room( name,  areaUsed,  cost,  maxPeople,  rentType,  id,  freeService);
+        String id = inputId();
+        String serviceCode = inputServiceCode(character);
+        String areaUsed = inputAreaUsed();
+        double cost = inputCost();
+        int maxPeople = inputMaxPeople();
+        String rentType = inputRentType();
+        String freeService = inputFreeService();
+        Room room = new Room(name, areaUsed, cost, maxPeople, rentType, id, freeService);
         listRoom.add(room);
         WriteCsvRoom.writeCsvRoom(listRoom);
         System.out.println("Da them moi Room!");
@@ -161,33 +300,33 @@ public class MainControllers extends Validation {
                 "6.Show All Name Name Not Duplicate\n" +
                 "7.Back to menu\n" +
                 "8.Exit\n");
-        int select = input.nextInt();
+        String select = input.nextLine();
         switch (select) {
-            case 1:
+            case "1":
                 this.showAllVilla();
                 this.showServices();
                 break;
-            case 2:
+            case "2":
                 this.showAllHouse();
                 this.showServices();
                 break;
-            case 3:
+            case "3":
                 this.showAllRoom();
                 this.showServices();
                 break;
-            case 4:
+            case "4":
                 this.showServices();
                 break;
-            case 5:
+            case "5":
                 this.showServices();
                 break;
-            case 6:
+            case "6":
                 this.showServices();
                 break;
-            case 7:
+            case "7":
                 this.displayMainMenu();
                 break;
-            case 8:
+            case "8":
                 flag = false;
                 System.exit(0);
                 break;
@@ -199,11 +338,11 @@ public class MainControllers extends Validation {
         while (flag) ;
     }
 
-    public void showAllVilla() throws IOException  {
+    public void showAllVilla() throws IOException {
         ReadCsvVilla readCsvVilla = new ReadCsvVilla();
         listVilla = readCsvVilla.readCsvVilla();
-        for (Villa villa:listVilla
-             ) {
+        for (Villa villa : listVilla
+        ) {
             System.out.println("-------------------------------------------------------");
             System.out.println(villa.showInfor());
             System.out.println("-------------------------------------------------------");
@@ -215,15 +354,146 @@ public class MainControllers extends Validation {
 
     private void showAllHouse() {
     }
-    //nhap du lieu
+
+    //nhap du lieu customer
+    public String inputNameCustomer() {
+        String nameCustomer;
+        isError = false;
+        do {
+            System.out.println("Nhập tên (in hoa chữ đầu)");
+            nameCustomer = input.nextLine();
+            if (checkNameCustomer(nameCustomer)) {
+                isError = false;
+            } else {
+                System.out.println("Tên Khách hàng phải in hoa ký tự đầu tiên trong mỗi từ");
+                isError = true;
+            }
+        } while (isError);
+        return nameCustomer;
+    }
+
+    public String inputBirthday() {
+        String birthday;
+        isError = false;
+        do {
+            System.out.println("Nhập sinh nhật ( cú pháp: dd/mm/yyyy)");
+            birthday = input.nextLine();
+            if (checkBirthday(birthday)) {
+                isError = false;
+            } else {
+                System.out.println("Sai cú pháp. Vui lòng nhập lại!");
+                isError = true;
+            }
+        } while (isError);
+        return birthday;
+    }
+
+    public String inputGender() {
+        String gender;
+        isError = false;
+        do {
+            System.out.println("Nhập giới tính(Male/Female/Unknown): ");
+            gender = input.nextLine();
+            if (checkGender(gender)) {
+                isError = false;
+            } else {
+                System.out.println("Sai cú pháp. Vui lòng nhập lại!");
+                isError = true;
+            }
+        } while (isError);
+        return gender;
+    }
+
+    public String inputCMND() {
+        String cmnd;
+        isError = false;
+        do {
+            System.out.println("Nhập số cmnd: ");
+            cmnd = input.nextLine();
+            if (checkCmnd(cmnd)) {
+                isError = false;
+            } else {
+                System.out.println("Số cmnd sai. Vui lòng nhập lại!");
+                isError = true;
+            }
+        } while (isError);
+        return cmnd;
+    }
+
+    public String inputPhoneNumber() {
+        String phone;
+        isError = false;
+        do {
+            System.out.println("Nhập số phone: ");
+            phone = input.nextLine();
+            if (checkPhoneNumber(phone)) {
+                isError = false;
+            } else {
+                System.out.println("Số phone sai. Vui lòng nhập lại!");
+                isError = true;
+            }
+        } while (isError);
+        return phone;
+    }
+
+    public String inputEmail() {
+        String email;
+        isError = false;
+        do {
+            System.out.println("Nhập email: ");
+            email = input.nextLine();
+            if (checkEmail(email)) {
+                isError = false;
+            } else {
+                System.out.println("Email phải đúng định dạng abc@abc.abc");
+                isError = true;
+            }
+        } while (isError);
+        return email;
+    }
+
+    public String inputTypeOfCustomer() {
+        String typeOfCustomer;
+        isError = false;
+        do {
+            System.out.println("Nhập typeOfCustomer: ");
+            typeOfCustomer = input.nextLine();
+            if (checkTypeOfCustomer(typeOfCustomer)) {
+                isError = false;
+            } else {
+                System.out.println("typeOfCustomer sai. Vui lòng nhập lại!");
+                isError = true;
+            }
+        } while (isError);
+        return typeOfCustomer;
+    }
+
+    public String inputAddress() {
+        String adress;
+        isError = false;
+        do {
+            System.out.println("Nhập adress: ");
+            adress = input.nextLine();
+            if (checkAdress(adress)) {
+                isError = false;
+            } else {
+                System.out.println("adress sai. Vui lòng nhập lại!");
+                isError = true;
+            }
+        } while (isError);
+        return adress;
+    }
+
+    //nhap du lieu villa/house/room
     public String inputId() {
         System.out.println("Nhập ID: ");
-        String id=input.nextLine();
+        String id = input.nextLine();
         return id;
     }
+
     public String inputServiceCode(String character) {
         String serviceCode;
-        isError =false;
+        isError = false;
         do {
             System.out.println("Nhập mã dịch vụ");
             serviceCode = input.nextLine();
@@ -231,11 +501,12 @@ public class MainControllers extends Validation {
                 isError = false;
             } else {
                 System.out.println("Service code không chính xác. Vui lòng nhập lại!");
-                isError=true;
+                isError = true;
             }
         } while (isError);
         return serviceCode;
     }
+
     public String inputAreaUsed() {
         String areaUsed;
         do {
@@ -245,11 +516,12 @@ public class MainControllers extends Validation {
                 isError = false;
             } else {
                 System.out.println("Diện tích nhập phải lớn hơn 30m2. Vui lòng nhập lại!");
-                isError=true;
+                isError = true;
             }
         } while (isError);
         return areaUsed;
     }
+
     public double inputCost() {
         double cost;
         do {
@@ -259,11 +531,12 @@ public class MainControllers extends Validation {
                 isError = false;
             } else {
                 System.out.println("Giá thuê phải là số dương. Vui lòng nhập lại!");
-                isError=true;
+                isError = true;
             }
         } while (isError);
         return cost;
     }
+
     public int inputMaxPeople() {
         int maxPeople;
         do {
@@ -273,11 +546,12 @@ public class MainControllers extends Validation {
                 isError = false;
             } else {
                 System.out.println("Số người phải từ 0-30. Vui lòng nhập lại!");
-                isError=true;
+                isError = true;
             }
         } while (isError);
         return maxPeople;
     }
+
     public String inputRentType() {
         String inputRentType;
         do {
@@ -287,27 +561,29 @@ public class MainControllers extends Validation {
                 isError = false;
             } else {
                 System.out.println("Kiểu thuê phải viết hoa chữ đầu. Vui lòng nhập lại!");
-                isError=true;
+                isError = true;
             }
         } while (isError);
         return inputRentType;
     }
-    public String inputDetail() {
+
+    public String inputRoomStandard() {
         String inputDetail;
-        isError=false;
+        isError = false;
         do {
             System.out.println("Nhập tiêu chuẩn phòng");
             inputDetail = input.nextLine();
-            if (checkDetail(inputDetail)) {
+            if (checkRoomStandard(inputDetail)) {
                 isError = false;
             } else {
-                isError=true;
+                isError = true;
                 System.out.println("Sai cú pháp. Vui lòng nhập lại!");
 
             }
         } while (isError);
         return inputDetail;
     }
+
     public String inputOtherUltilities() {
         String otherUltilities;
         do {
@@ -317,11 +593,12 @@ public class MainControllers extends Validation {
                 isError = false;
             } else {
                 System.out.println("Các dịch vụ khác bao gồm: massage, karaoke, food, drink, car. Vui lòng nhập lại!");
-                isError=true;
+                isError = true;
             }
         } while (isError);
         return otherUltilities;
     }
+
     public String inputPoolArea() {
         String poolArea;
         do {
@@ -331,11 +608,12 @@ public class MainControllers extends Validation {
                 isError = false;
             } else {
                 System.out.println("Diện tích hồ bơi phải lớn hơn 30m2. Vui lòng nhập lại!");
-                isError=true;
+                isError = true;
             }
         } while (isError);
         return poolArea;
     }
+
     public int inputFloors() {
         int floors;
         do {
@@ -345,11 +623,12 @@ public class MainControllers extends Validation {
                 isError = false;
             } else {
                 System.out.println(" Vui lòng nhập lại!");
-                isError=true;
+                isError = true;
             }
         } while (isError);
         return floors;
     }
+
     public String inputFreeService() {
         String freeService;
         do {
@@ -359,7 +638,7 @@ public class MainControllers extends Validation {
                 isError = false;
             } else {
                 System.out.println("Sai cú pháp. Vui lòng nhập lại!");
-                isError=true;
+                isError = true;
             }
         } while (isError);
         return freeService;

@@ -10,8 +10,8 @@ import java.util.ArrayList;
 public class WriteCsvVilla {
     private static final String COMMA = ",";
     private static final String NEW_LINE = "\n";
-    private static final String FILE_HEADER="Name,ServiceCode,Area,Cost,Max People,Cost,Other ultilities," +
-            "Pool area,Number of floors";
+    private static final String FILE_HEADER="ID,Name,Area,Cost,Max People,Rent type,Service Code,Room standard," +
+            "Other ultilities,Pool area,Number of floors";
     public WriteCsvVilla() throws IOException {
     }
 
@@ -24,11 +24,13 @@ public class WriteCsvVilla {
         try {
             fileVilla = new FileWriter("E:\\Java\\C0220G1_KieuSonHai_mdl2_casestudy\\src\\Data\\Villa.csv");
             for(Villa villa : listVilla) {
+//                String id, String name, String areaUsed, double cost, int maxPeople, String rentType, String serviceCode,
+//                        String roomStandard, String otherUtilities, String poolArea, int floors
                 fileVilla.append(FILE_HEADER);
                 fileVilla.append(NEW_LINE);
-                fileVilla.append(villa.getName());
+                fileVilla.append(villa.getId());
                 fileVilla.append(COMMA);
-                fileVilla.append(villa.getServiceCode());
+                fileVilla.append(villa.getName());
                 fileVilla.append(COMMA);
                 fileVilla.append(villa.getAreaUsed());
                 fileVilla.append(COMMA);
@@ -37,6 +39,10 @@ public class WriteCsvVilla {
                 fileVilla.append(String.valueOf(villa.getMaxPeople()));
                 fileVilla.append(COMMA);
                 fileVilla.append(String.valueOf(villa.getRentType()));
+                fileVilla.append(COMMA);
+                fileVilla.append(villa.getServiceCode());
+                fileVilla.append(COMMA);
+                fileVilla.append(villa.getRoomStandard());
                 fileVilla.append(COMMA);
                 fileVilla.append(villa.getOtherUtilities());
                 fileVilla.append(COMMA);

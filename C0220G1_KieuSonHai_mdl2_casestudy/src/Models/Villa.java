@@ -2,20 +2,21 @@ package Models;
 
 public class Villa extends Services {
     private String name="Villa";
-    private String detail="Detail";
+    private String roomStandard ="Detail";
     private String otherUtilities="Các tiện ích";
     private String poolArea="20.0m2";
     private int floors=4;
 
-    public Villa(String id,String name, String areaUsed, double cost, int maxPeople, String rentType, String serviceCode,
-                 String detail,String otherUtilities, String poolArea, int floors) {
+    public Villa(String id, String name, String areaUsed, double cost, int maxPeople, String rentType, String serviceCode,
+                 String roomStandard, String otherUtilities, String poolArea, int floors) {
         super(id,name, areaUsed, cost, maxPeople, rentType, serviceCode);
 
-        this.detail = detail;
+        this.roomStandard = roomStandard;
         this.otherUtilities = otherUtilities;
         this.poolArea = poolArea;
         this.floors = floors;
     }
+
 
     @Override
     public String getName() {
@@ -27,12 +28,12 @@ public class Villa extends Services {
         this.name = name;
     }
 
-    public String getDetail() {
-        return detail;
+    public String getRoomStandard() {
+        return roomStandard;
     }
 
-    public void setDetail(String detail) {
-        this.detail = detail;
+    public void setRoomStandard(String roomStandard) {
+        this.roomStandard = roomStandard;
     }
 
     public String getOtherUtilities() {
@@ -66,9 +67,9 @@ public class Villa extends Services {
                 +"\nCost: "+this.getCost()
                 +" \nMaximum number of people: "+this.getMaxPeople()
                 +"\nRent type: "+this.getRentType()
-                +"Tiêu chuẩn phòng: "+this.getDetail()
-                +"Tiện ích khác: "+this.getOtherUtilities()
-                +"Area of pool: "+this.getPoolArea()
-                +"Number of floors: "+this.getFloors();
+                +"\nTiêu chuẩn phòng: "+this.getRoomStandard()
+                +"\nTiện ích khác: "+this.getOtherUtilities()
+                +"\nArea of pool: "+this.getPoolArea()
+                +"\nNumber of floors: "+this.getFloors();
     }
 }
