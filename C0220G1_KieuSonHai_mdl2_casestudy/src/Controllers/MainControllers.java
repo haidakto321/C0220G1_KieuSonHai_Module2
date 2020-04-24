@@ -156,12 +156,12 @@ public class MainControllers extends Validation {
                 "3.Booking Room\n" +
                 "4.Back to menu\n" +
                 "5.exit\n");
-        String choose;
+        String select;
         boolean flag = true;
         do {
             System.out.print("Chọn chức năng bạn muốn sử dụng: ");
-            choose = input.nextLine();
-            switch (choose) {
+            select = input.nextLine();
+            switch (select) {
                 case "1":
                     this.addServicesVilla(customer);
                     this.displayMainMenu();
@@ -194,17 +194,17 @@ public class MainControllers extends Validation {
         listVilla = readCsvVilla.readCsvVilla();
         for (int i = 0; i < listVilla.size(); i++) {
             System.out.println((i + 1) + "." + listVilla.get(i).getId() + "  " + listVilla.get(i).getServiceCode() + "  "
-                    + listVilla.get(i).getRoomStandard() + "  " + listVilla.get(i).getCost() + " USD");
+                    + listVilla.get(i).getRoomStandard() + "  " + listVilla.get(i).getCost() );
             System.out.println("-------------------------------------------------------");
         }
-        String choose;
+        String select;
         Villa services = null;
         boolean flag = true;
         do {
             System.out.print("Chọn dich vu Villa muon book: ");
-            choose = input.nextLine();
-            if (Integer.parseInt(choose) > 0 && Integer.parseInt(choose) <= listVilla.size()) {
-                services = listVilla.get(Integer.parseInt(choose) - 1);
+            select = input.nextLine();
+            if (Integer.parseInt(select) > 0 && Integer.parseInt(select) <= listVilla.size()) {
+                services = listVilla.get(Integer.parseInt(select) - 1);
                 flag = false;
             } else {
                 System.out.println("Giá trị nhập vào không chính xác. Vui lòng nhập lại");
@@ -352,7 +352,15 @@ public class MainControllers extends Validation {
     private void showAllRoom() {
     }
 
-    private void showAllHouse() {
+    private void showAllHouse() throws FileNotFoundException {
+        ReadCsvHouse readCsvHouse = new ReadCsvHouse();
+        listHouse = readCsvHouse.readCsvHouse();
+        for (House house : listHouse
+        ) {
+            System.out.println("-------------------------------------------------------");
+            System.out.println(house.showInfor());
+            System.out.println("-------------------------------------------------------");
+        }
     }
 
     //nhap du lieu customer

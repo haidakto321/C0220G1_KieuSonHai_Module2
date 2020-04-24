@@ -1,2 +1,2 @@
-Name,ServiceCode,Area,Cost,Max People,Cost,Free Service
-Room,3,87,7778.0,6,Year/Month/Day/Hour,Nuoc Nong
+Name,ServiceCode,Area,Cost,Max People,Cost,Other ultilities,Number of floors
+null,House,30,1000.0,3,Year/Month/Day/Hour,SVHO-6565,Vip,drink,3

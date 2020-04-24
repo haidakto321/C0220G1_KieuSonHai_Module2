@@ -21,11 +21,13 @@ public class WriteCsvHouse {
             fileHouse = new FileWriter("E:\\Java\\C0220G1_KieuSonHai_mdl2_casestudy\\src\\Data\\House.csv");
             for (House house:listHouse
                  ) {
+//                String id, String name, String areaUsed, double cost, int maxPeople, String rentType,
+//                 String serviceCode, String roomStandard, String otherUtilities, int floors
                 fileHouse.append(FILE_HEADER);
                 fileHouse.append(NEW_LINE);
-                fileHouse.append(house.getName());
+                fileHouse.append(house.getId());
                 fileHouse.append(COMMA);
-                fileHouse.append(house.getServiceCode());
+                fileHouse.append(house.getName());
                 fileHouse.append(COMMA);
                 fileHouse.append(house.getAreaUsed());
                 fileHouse.append(COMMA);
@@ -34,6 +36,10 @@ public class WriteCsvHouse {
                 fileHouse.append(String.valueOf(house.getMaxPeople()));
                 fileHouse.append(COMMA);
                 fileHouse.append(String.valueOf(house.getRentType()));
+                fileHouse.append(COMMA);
+                fileHouse.append(house.getServiceCode());
+                fileHouse.append(COMMA);
+                fileHouse.append(house.getRoomStandard());
                 fileHouse.append(COMMA);
                 fileHouse.append(house.getOtherUtilities());
                 fileHouse.append(COMMA);

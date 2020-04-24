@@ -2,24 +2,24 @@ package Models;
 
 public class House extends Services{
     private String name="House";
-    private String detail="Detail";
+    private String roomStandard ="Detail";
     private String otherUtilities="Các tiện ích";
     private int floors=2;
 
     public House(String id, String name, String areaUsed, double cost, int maxPeople, String rentType,
-                 String serviceCode,  String detail, String otherUtilities, int floors) {
+                 String serviceCode, String roomStandard, String otherUtilities, int floors) {
         super(id, name, areaUsed, cost, maxPeople, rentType, serviceCode);
-        this.detail = detail;
+        this.roomStandard = roomStandard;
         this.otherUtilities = otherUtilities;
         this.floors = floors;
     }
 
-    public String getDetail() {
-        return detail;
+    public String getRoomStandard() {
+        return roomStandard;
     }
 
-    public void setDetail(String detail) {
-        this.detail = detail;
+    public void setRoomStandard(String roomStandard) {
+        this.roomStandard = roomStandard;
     }
 
     public String getOtherUtilities() {
@@ -45,8 +45,8 @@ public class House extends Services{
                 +"\nCost: "+this.getCost()
                 +" \nMaximum number of people: "+this.getMaxPeople()
                 +"\nRent type: "+this.getRentType()
-                +"Tiêu chuẩn phòng: "+this.getDetail()
-                +"Tiện ích khác: "+this.getOtherUtilities()
-                +"Number of floors: "+this.getFloors();
+                +"\nTiêu chuẩn phòng: "+this.getRoomStandard()
+                +"\nTiện ích khác: "+this.getOtherUtilities()
+                +"\nNumber of floors: "+this.getFloors();
     }
 }

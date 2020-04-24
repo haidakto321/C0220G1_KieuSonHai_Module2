@@ -95,7 +95,7 @@ public class Validation {
     }
 
     public boolean checkAreaUsed(String areaUsed) {
-        String regexp = "[3-9]+[0-9]+\\.?+[0-9]*";
+        String regexp = "([3-9]{1}[0-9]+||[1-9]{3,})+\\.?+[0-9]*";
         if (Pattern.matches(regexp, areaUsed)) {
             return true;
         } else {
