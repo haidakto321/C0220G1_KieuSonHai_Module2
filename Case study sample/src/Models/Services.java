@@ -1,24 +1,24 @@
-package Models;
+package models;
 
 public abstract class Services {
     private String id;
-    private String serviceCode;
-    private double areaUsed;
-    private double cost;
-    private int maxPeople;
+    private String nameOfService;
+    private double usedArea;
+    private double rentalFee;
+    private int maxGuest;
     private String rentType;
 
 
-    public Services() {
-    }
+    public Services(){
 
-    public Services(String id, double areaUsed, double cost, int maxPeople, String rentType, String serviceCode) {
-        this.id = id;
-        this.areaUsed = areaUsed;
-        this.cost = cost;
-        this.maxPeople = maxPeople;
+    }
+    public Services(String id, String nameOfService, double usedArea, double rentalFee, int maxGuest, String rentType){
+            this.id = id;
+        this.nameOfService = nameOfService;
+        this.usedArea = usedArea;
+        this.rentalFee = rentalFee;
+        this.maxGuest = maxGuest;
         this.rentType = rentType;
-        this.serviceCode = serviceCode;
     }
 
     public String getId() {
@@ -29,30 +29,36 @@ public abstract class Services {
         this.id = id;
     }
 
-
-
-    public double getAreaUsed() {
-        return areaUsed;
+    public String getNameOfService() {
+        return nameOfService;
     }
 
-    public void setAreaUsed(double areaUsed) {
-        this.areaUsed = areaUsed;
+    public void setNameOfService(String nameOfService) {
+        this.nameOfService = nameOfService;
     }
 
-    public double getCost() {
-        return cost;
+    public double getUsedArea() {
+        return usedArea;
     }
 
-    public void setCost(double cost) {
-        this.cost = cost;
+    public void setUsedArea(double usedArea) {
+        this.usedArea = usedArea;
     }
 
-    public int getMaxPeople() {
-        return maxPeople;
+    public double getRentalFee() {
+        return rentalFee;
     }
 
-    public void setMaxPeople(int maxPeople) {
-        this.maxPeople = maxPeople;
+    public void setRentalFee(double rentalFee) {
+        this.rentalFee = rentalFee;
+    }
+
+    public int getMaxGuest() {
+        return maxGuest;
+    }
+
+    public void setMaxGuest(int maxGuest) {
+        this.maxGuest = maxGuest;
     }
 
     public String getRentType() {
@@ -63,13 +69,8 @@ public abstract class Services {
         this.rentType = rentType;
     }
 
-    public String getServiceCode() {
-        return serviceCode;
-    }
 
-    public void setServiceCode(String serviceCode) {
-        this.serviceCode = serviceCode;
-    }
+    
 
     public abstract void showInfor();
 }

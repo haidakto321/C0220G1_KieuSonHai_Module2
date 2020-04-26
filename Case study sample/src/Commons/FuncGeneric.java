@@ -1,8 +1,6 @@
-package Commons;
+package commons;
 
-import Models.House;
-import Models.Room;
-import Models.Villa;
+import models.*;
 import com.opencsv.bean.ColumnPositionMappingStrategy;
 import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
@@ -12,53 +10,62 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.TreeSet;
 
-import static Commons.FuncWriteAndReadFileCSV.*;
+import static commons.FuncReadWriteCSV.*;
+import static controllers.MainController.processMain;
+
 
 public class FuncGeneric {
-    public enum EntityType{
+    public static final char DEFAULT_SEPARATOR = ',';
+    public static final char DEFAULT_QUOTE = '"';
+    public static final int NUM_OF_LINE_SKIP = 1;
+    public enum EntityType {
         VILLA,
         HOUSE,
         ROOM,
         CUSTOMER,
         EMPLOYEE
     }
-    public static <E>ArrayList<E> getListFromCSV(EntityType entityType) {
-        String csvPath="";
-        String[] headerRecord;
+
+    //Get list From CSV method
+    public static <E> ArrayList<E> getListFromCSV(EntityType entityType) {
+        String csvPath = "";
+        String[] headRecord;
         switch (entityType) {
             case VILLA:
-                csvPath=pathVilla;
-                headerRecord=headerRecordVilla;
+                csvPath = pathVilla;
+                headRecord = headerRecordVilla;
                 break;
             case HOUSE:
-                csvPath=pathHouse;
-                headerRecord=headerRecordHouse;
+                csvPath = pathHouse;
+                headRecord = headerRecordHouse;
                 break;
             case ROOM:
-                csvPath=pathRoom;
-                headerRecord=headerRecordRoom;
+                csvPath = pathRoom;
+                headRecord = headerRecordRoom;
                 break;
             case CUSTOMER:
-                csvPath=pathCustomer;
-                headerRecord=headerRecordCustomer;
+                csvPath = pathCustomer;
+                headRecord = headerRecordCustomer;
                 break;
             case EMPLOYEE:
-                csvPath=pathEmployee;
-                headerRecord=headerRecordEmployee;
+                csvPath = pathEmployee;
+                headRecord = headerRecordEmployee;
                 break;
             default:
-                throw new IllegalStateException("Unexpected value: "+entityType);
+                throw new IllegalStateException("Unexpected value: " + entityType);
         }
-        Path path=Paths.get(csvPath);
-        if(!Files.exists(path)) {
+
+        Path path = Paths.get(csvPath);
+        if (!Files.exists(path)) {
             try {
-                Writer writer=new FileWriter(csvPath);
+                Writer writer = new FileWriter(csvPath);
             } catch (IOException e) {
                 System.out.println(e.getMessage());
             }
         }
-        ColumnPositionMappingStrategy<E> strategy=new ColumnPositionMappingStrategy<>();
+        ColumnPositionMappingStrategy<E> strategy = new ColumnPositionMappingStrategy<>();
         switch (entityType) {
             case VILLA:
                 strategy.setType((Class<? extends E>) Villa.class);
@@ -70,26 +77,81 @@ public class FuncGeneric {
                 strategy.setType((Class<? extends E>) Room.class);
                 break;
             case CUSTOMER:
-//                strategy.setType((Class<? extends E>) Customer.class);
+                strategy.setType((Class<? extends E>) Customer.class);
                 break;
             case EMPLOYEE:
-//                strategy.setType((Class<? extends E>) Employee.class);
+                strategy.setType((Class<? extends E>) Employee.class);
                 break;
-        }
-        strategy.setColumnMapping(headerRecord);
+            default:
 
-        CsvToBean<E> csvToBean=null;
+        }
+        strategy.setColumnMapping(headRecord);
+        CsvToBean<E> csvToBean = null;
         try {
-            csvToBean =new CsvToBeanBuilder<E>(new FileReader(csvPath))
+            csvToBean = new CsvToBeanBuilder<E>(new FileReader(csvPath))
                     .withMappingStrategy(strategy)
                     .withSeparator(DEFAULT_SEPARATOR)
-                    .withQuoteChar(DEFAULT_QUOTE_CHARACTER)
+                    .withQuoteChar(DEFAULT_QUOTE)
                     .withSkipLines(NUM_OF_LINE_SKIP)
                     .withIgnoreLeadingWhiteSpace(true)
                     .build();
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
         }
-        return (ArrayList) csvToBean.parse();
+        return (ArrayList<E>) csvToBean.parse();
+    }
+
+    //Display list from CSV method
+    public static <E> void displayList(ArrayList<E> arrayList) {
+        int i = 1;
+        System.out.println("---------------LIST--------------");
+        for (E element : arrayList) {
+            System.out.println("NO: " + i);
+            if (element instanceof Villa) {
+                ((Villa) element).showInfor();
+            } else if (element instanceof House) {
+                ((House) element).showInfor();
+            } else if (element instanceof Room) {
+                ((Room) element).showInfor();
+            }else if(element instanceof Customer){
+                ((Customer) element).showInfor();
+//            }else if(element instanceof Employee){
+//                System.out.println((Employee) element));
+            }
+            i++;
+            System.out.println("---------------END--------------");
+        }
+    }
+
+
+    //Show All Name Not Duplicate method
+    public static void showAllNameNotDuplicate(EntityType entityType){
+        String csvPath = "";
+        switch (entityType){
+            case VILLA:
+                csvPath = pathVilla;
+                break;
+            case HOUSE:
+                csvPath = pathHouse;
+                break;
+            case ROOM:
+                csvPath = pathRoom;
+                break;
+        }
+        Path path = Paths.get(csvPath);
+        if(!Files.exists(path)){
+            System.out.println("---File csv path does not exists!");
+            processMain();
+        }
+        TreeSet<String> treeSet = FuncReadWriteCSV.getAllNameServicesFromCsv(csvPath);
+        System.out.println("---List Name Of Service Not Duplicate");
+        for(String str: treeSet){
+            System.out.println(str);
+            System.out.println("-------------");
+        }
+        processMain();
     }
 }
+
+
+

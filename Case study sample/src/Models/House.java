@@ -1,57 +1,58 @@
-package Models;
+package models;
 
 public class House extends Services {
-    private String roomStandard ;
-    private String otherUtilities;
-    private int floors;
+    private String roomType;
+    private String facilities;
+    private int numberOfFloor;
 
-    public House() {
+    public House(){
+
+    }
+    public House(String id, String nameOfService, double usedArea, double rentalFee, int maxGuest, String rentType,
+                 String roomType,String facilities, int numberOfFloor){
+        super(id,nameOfService,usedArea,rentalFee,maxGuest,rentType);
+        this.roomType = roomType;
+        this.facilities = facilities;
+        this.numberOfFloor = numberOfFloor;
+
     }
 
-    public House(String id, double areaUsed, double cost, int maxPeople, String rentType,
-                 String serviceCode, String roomStandard, String otherUtilities, int floors) {
-        super(id,  areaUsed, cost, maxPeople, rentType, serviceCode);
-        this.roomStandard = roomStandard;
-        this.otherUtilities = otherUtilities;
-        this.floors = floors;
+    public String getRoomType() {
+        return roomType;
     }
 
-    public String getRoomStandard() {
-        return roomStandard;
+    public void setRoomType(String roomType) {
+        this.roomType = roomType;
     }
 
-    public void setRoomStandard(String roomStandard) {
-        this.roomStandard = roomStandard;
+    public String getFacilities() {
+        return facilities;
     }
 
-    public String getOtherUtilities() {
-        return otherUtilities;
+    public void setFacilities(String facilities) {
+        this.facilities = facilities;
     }
 
-    public void setOtherUtilities(String otherUtilities) {
-        this.otherUtilities = otherUtilities;
+    public int getNumberOfFloor() {
+        return numberOfFloor;
     }
 
-    public int getFloors() {
-        return floors;
+    public void setNumberOfFloor(int numberOfFloor) {
+        this.numberOfFloor = numberOfFloor;
     }
 
-    public void setFloors(int floors) {
-        this.floors = floors;
-    }
 
     @Override
     public void showInfor() {
-        System.out.println(
-                "Id: "+super.getId()
-                        +"\nService name: "+super.getServiceCode()
-                        +" \nDien tích sử dụng: "+super.getAreaUsed()
-                        +"\nCost: "+super.getCost()
-                        +" \nMaximum number of people: "+super.getMaxPeople()
-                        +"\nRent type: "+super.getRentType()
-                        +"\nTiêu chuẩn phòng: "+this.getRoomStandard()
-                        +"\nTiện ích khác: "+this.getOtherUtilities()
-                        +"\nNumber of floors: "+this.getFloors());
-
+        System.out.println( "1. ID Service: "+this.getId()+"\n"+
+                "2. Name of Service: "+this.getNameOfService()+"\n"+
+                "3. Used Area: "+this.getUsedArea()+"\n"+
+                "4. Rent Fee: "+this.getRentalFee()+"\n"+
+                "5. Maximum number of guest: "+this.getMaxGuest()+"\n"+
+                "6. Rent Type: "+this.getRentType()+"\n"+
+                "7. Room Type: "+this.getRoomType()+"\n"+
+                "8. Facilities: "+this.getFacilities()+"\n"+
+                "9. Number of Floors: "+this.getNumberOfFloor()+"\n"
+                );
     }
 }

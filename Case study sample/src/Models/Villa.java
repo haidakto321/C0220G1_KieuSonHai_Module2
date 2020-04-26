@@ -1,68 +1,68 @@
-package Models;
+package models;
+
 
 public class Villa extends Services {
-    private String roomStandard ;
-    private String otherUtilities;
-    private String poolArea;
-    private int floors;
+    private String roomType;
+    private String facilities;
+    private double poolArea;
+    private int numberOfFloor;
 
-    public Villa() {
+    public Villa(){
+
     }
-
-    public Villa(String id, double areaUsed, double cost, int maxPeople, String rentType,
-                 String serviceCode, String roomStandard, String otherUtilities, String poolArea, int floors) {
-        super(id,  areaUsed, cost, maxPeople, rentType, serviceCode);
-        this.roomStandard = roomStandard;
-        this.otherUtilities = otherUtilities;
+    public Villa(String id, String nameOfService, double usedArea, double rentalFee, int maxGuest, String rentType,
+                 String roomType,String facilities ,double poolArea,int numberOfFloor){
+        super(id,nameOfService,usedArea,rentalFee,maxGuest,rentType);
+        this.roomType = roomType;
+        this.facilities = facilities;
         this.poolArea = poolArea;
-        this.floors = floors;
+        this.numberOfFloor = numberOfFloor;
     }
 
-    public String getRoomStandard() {
-        return roomStandard;
+    public String getRoomType() {
+        return roomType;
     }
 
-    public void setRoomStandard(String roomStandard) {
-        this.roomStandard = roomStandard;
+    public void setRoomType(String roomType) {
+        this.roomType = roomType;
     }
 
-    public String getOtherUtilities() {
-        return otherUtilities;
+    public String getFacilities() {
+        return facilities;
     }
 
-    public void setOtherUtilities(String otherUtilities) {
-        this.otherUtilities = otherUtilities;
+    public void setFacilities(String facilities) {
+        this.facilities = facilities;
     }
 
-    public String getPoolArea() {
+    public double getPoolArea() {
         return poolArea;
     }
 
-    public void setPoolArea(String poolArea) {
+    public void setPoolArea(double poolArea) {
         this.poolArea = poolArea;
     }
 
-    public int getFloors() {
-        return floors;
+    public int getNumberOfFloor() {
+        return numberOfFloor;
     }
 
-    public void setFloors(int floors) {
-        this.floors = floors;
+    public void setNumberOfFloor(int numberOfFloor) {
+        this.numberOfFloor = numberOfFloor;
     }
 
     @Override
     public void showInfor() {
-        System.out.println(
-                "Id: "+super.getId()
-                +"\nService name: "+super.getServiceCode()
-                +" \nDien tích sử dụng: "+super.getAreaUsed()
-                +"\nCost: "+super.getCost()
-                +" \nMaximum number of people: "+super.getMaxPeople()
-                +"\nRent type: "+super.getRentType()
-                +"\nTiêu chuẩn phòng: "+this.getRoomStandard()
-                +"\nTiện ích khác: "+this.getOtherUtilities()
-                +"\nArea of pool: "+this.getPoolArea()
-                +"\nNumber of floors: "+this.getFloors());
+        System.out.println( "1. ID Service: "+this.getId()+"\n"+
+                "2. Name of Service: "+this.getNameOfService()+"\n"+
+                "3. Used Area: "+this.getUsedArea()+"\n"+
+                "4. Rent Fee: "+this.getRentalFee()+"\n"+
+                "5. Maximum number of guest: "+this.getMaxGuest()+"\n"+
+                "6. Rent Type: "+this.getRentType()+"\n"+
+                "7. Room Type: "+this.getRoomType()+"\n"+
+                "8. Facilities: "+this.getFacilities()+"\n"+
+                "9. Pool Area: "+this.getPoolArea()+"\n"+
+                "10. Number of Floors: "+this.getNumberOfFloor()+"\n");
 
     }
 }
