@@ -1,2 +1,4 @@
 Name,ServiceCode,Area,Cost,Max People,Cost,Free Service
-Room,3,65,666.0,5,Year/Month/Day/Hour,Ha Ha
+30,Room,30,200.0,1,DaySVRO-0900,Khong Co
+Name,ServiceCode,Area,Cost,Max People,Cost,Free Service
+31,Room,30,180.0,0,DaySVRO-1022,Khong Co

@@ -9,7 +9,9 @@ import java.util.ArrayList;
 public class WriteCsvCustomer {
     private static final String COMMA = ",";
     private static final String NEW_LINE = "\n";
-    private static final String FILE_HEADER=" name,  birthday,  gender,  CMND,  numberPhone,  email,  typeOfCustomer,  address,  services";
+    private static final String FILE_HEADER=" name,  birthday,  gender,  CMND,  numberPhone,  email, " +
+            " typeOfCustomer,  address";
+
     public WriteCsvCustomer() throws IOException {
     }
 

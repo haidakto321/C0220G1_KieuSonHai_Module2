@@ -10,7 +10,7 @@ public abstract class Services {
     private String serviceCode;
 
     public Services(String id, String name, String areaUsed, double cost, int maxPeople, String rentType, String serviceCode) {
-        this.id= this.id;
+        this.id= id;
         this.name = name;
         this.areaUsed = areaUsed;
         this.cost = cost;
@@ -60,7 +60,7 @@ public abstract class Services {
     }
 
     public String getRentType() {
-        return "Year/Month/Day/Hour";
+        return this.rentType;
     }
 
     public void setRentType(String rentType) {

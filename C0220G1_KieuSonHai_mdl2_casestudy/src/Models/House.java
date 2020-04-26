@@ -1,10 +1,10 @@
 package Models;
 
 public class House extends Services{
-    private String name="House";
-    private String roomStandard ="Detail";
-    private String otherUtilities="Các tiện ích";
-    private int floors=2;
+    private String name;
+    private String roomStandard ;
+    private String otherUtilities;
+    private int floors;
 
     public House(String id, String name, String areaUsed, double cost, int maxPeople, String rentType,
                  String serviceCode, String roomStandard, String otherUtilities, int floors) {
@@ -40,11 +40,12 @@ public class House extends Services{
 
     @Override
     public String showInfor() {
-        return "Dịch vụ: "+this.getName()+
-                " \nDien tích sử dụng: "+this.getAreaUsed()
-                +"\nCost: "+this.getCost()
-                +" \nMaximum number of people: "+this.getMaxPeople()
-                +"\nRent type: "+this.getRentType()
+        return "Id: "+super.getId()
+                +"\nService name: "+super.getServiceCode()
+                +" \nDien tích sử dụng: "+super.getAreaUsed()
+                +"\nCost: "+super.getCost()
+                +" \nMaximum number of people: "+super.getMaxPeople()
+                +"\nRent type: "+super.getRentType()
                 +"\nTiêu chuẩn phòng: "+this.getRoomStandard()
                 +"\nTiện ích khác: "+this.getOtherUtilities()
                 +"\nNumber of floors: "+this.getFloors();

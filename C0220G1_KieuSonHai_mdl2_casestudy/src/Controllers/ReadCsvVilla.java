@@ -25,7 +25,7 @@ public class ReadCsvVilla {
             readVilla = new BufferedReader(new FileReader("E:\\Java\\C0220G1_KieuSonHai_mdl2_casestudy\\src\\Data\\Villa.csv"));
             while ((line = readVilla.readLine()) != null) {
                 String[] splitData = line.split(",");
-                if (splitData[0].equals("ID")) {
+                if (splitData[0].equals("Name")) {
                     continue;
                 }
 //                String id, String name, String areaUsed, double cost, int maxPeople, String rentType, String serviceCode,
@@ -45,7 +45,14 @@ public class ReadCsvVilla {
                 System.out.println(e.getMessage());
             }
         }
-
         return listVilla;
+    }
+    public TreeSet<String> readCsvVillaNotDuplicate() throws IOException {
+        String line;
+        while ((line = readVilla.readLine()) != null) {
+            String[] splitData = line.split(",");
+            listVillaNotDuplicate.add(splitData[1]);
+        }
+        return listVillaNotDuplicate;
     }
 }

@@ -1,11 +1,11 @@
 package Models;
 
 public class Villa extends Services {
-    private String name="Villa";
-    private String roomStandard ="Detail";
-    private String otherUtilities="Các tiện ích";
-    private String poolArea="20.0m2";
-    private int floors=4;
+    private String name;
+    private String roomStandard ;
+    private String otherUtilities;
+    private String poolArea;
+    private int floors;
 
     public Villa(String id, String name, String areaUsed, double cost, int maxPeople, String rentType, String serviceCode,
                  String roomStandard, String otherUtilities, String poolArea, int floors) {
@@ -62,11 +62,12 @@ public class Villa extends Services {
 
     @Override
     public String showInfor() {
-        return "Dịch vụ: "+this.getName()+
-                " \nDien tích sử dụng: "+this.getAreaUsed()
-                +"\nCost: "+this.getCost()
-                +" \nMaximum number of people: "+this.getMaxPeople()
-                +"\nRent type: "+this.getRentType()
+        return "Id: "+super.getId()
+                +"\nService name: "+super.getServiceCode()
+                +" \nDien tích sử dụng: "+super.getAreaUsed()
+                +"\nCost: "+super.getCost()
+                +" \nMaximum number of people: "+super.getMaxPeople()
+                +"\nRent type: "+super.getRentType()
                 +"\nTiêu chuẩn phòng: "+this.getRoomStandard()
                 +"\nTiện ích khác: "+this.getOtherUtilities()
                 +"\nArea of pool: "+this.getPoolArea()

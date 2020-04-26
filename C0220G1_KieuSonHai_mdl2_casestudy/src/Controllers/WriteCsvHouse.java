@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class WriteCsvHouse {
     private static final String COMMA = ",";
     private static final String NEW_LINE = "\n";
-    private static final String FILE_HEADER = "Name,ServiceCode,Area,Cost,Max People,Cost,Other ultilities," +
+    private static final String FILE_HEADER = "ID,Name,ServiceCode,Area,Cost,Max People,Cost,Other ultilities," +
             "Number of floors";
 
     public WriteCsvHouse() {

@@ -47,4 +47,13 @@ public class ReadCsvHouse {
 
         return listHouse;
     }
+
+    public TreeSet<String> readCsvHouseNotDuplicate() throws IOException {
+        String line;
+        while ((line = readHouse.readLine()) != null) {
+            String[] splitData = line.split(",");
+            listHouseNotDuplicate.add(splitData[1]);
+        }
+        return listHouseNotDuplicate;
+    }
 }

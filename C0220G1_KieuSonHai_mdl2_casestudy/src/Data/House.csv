@@ -1,2 +1,4 @@
 Name,ServiceCode,Area,Cost,Max People,Cost,Other ultilities,Number of floors
-null,House,30,1000.0,3,Year/Month/Day/Hour,SVHO-6565,Vip,drink,3
+20,House,50,100.0,2,Day,SVHO-1234,Normal,massage,2
+Name,ServiceCode,Area,Cost,Max People,Cost,Other ultilities,Number of floors
+21,House,150,250.0,3,Month,SVHO-2121,Vip,drink,3

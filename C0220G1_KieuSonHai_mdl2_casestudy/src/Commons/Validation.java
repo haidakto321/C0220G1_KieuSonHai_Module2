@@ -23,7 +23,7 @@ public class Validation {
         }
     }
     public boolean checkGender(String gender) {
-        String regexp="(Male||Female||Unknow)";
+        String regexp="(Male||Female||Unknown)";
 
         if(Pattern.matches(regexp,gender)) {
             return true;
@@ -164,7 +164,7 @@ public class Validation {
     }
 
     public boolean checkFreeService(String freeService) {
-        String regexp="[A-Z][a-z]* ([A-Z][a-z]*)*";
+        String regexp="[A-Z][a-z]* [A-Za-z]*";
         if(Pattern.matches(regexp,freeService)) {
             return true;
         } else {

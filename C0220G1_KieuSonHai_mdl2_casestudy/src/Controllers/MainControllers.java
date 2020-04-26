@@ -6,7 +6,9 @@ import Models.*;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.Scanner;
+import java.util.TreeSet;
 
 public class MainControllers extends Validation {
     public static void main(String[] args) throws IOException {
@@ -16,9 +18,16 @@ public class MainControllers extends Validation {
 
     Scanner input = new Scanner(System.in);
     ArrayList<Villa> listVilla = new ArrayList<>();
+    TreeSet<String> listVillaNotDuplicate = new TreeSet<>();
     ArrayList<House> listHouse = new ArrayList<>();
+    TreeSet<String> listHouseNotDuplicate = new TreeSet<>();
     ArrayList<Room> listRoom = new ArrayList<>();
+    TreeSet<String> listRoomNotDuplicate = new TreeSet<>();
+
+
     ArrayList<Customer> listCustomer = new ArrayList<>();
+
+
     private boolean isError;
 
     public MainControllers() {
@@ -54,6 +63,25 @@ public class MainControllers extends Validation {
                 break;
             case "5":
                 this.addNewBook();
+                this.displayMainMenu();
+                break;
+            case "6":
+                this.showInformationOfEmployee();
+                this.displayMainMenu();
+                break;
+            case "7":
+                this.bookingMovieTicket4D();
+                this.displayMainMenu();
+                break;
+            case "8":
+                this.findEmployee();
+                this.displayMainMenu();
+                break;
+            case "9":
+                System.exit(1);
+                break;
+            default:
+                System.out.println("Giá trị nhập vào không chính xác. Vui lòng nhập lại");
                 this.displayMainMenu();
                 break;
         }
@@ -112,7 +140,20 @@ public class MainControllers extends Validation {
         writeCsvCustomer.writeCsvCustomerFile(listCustomer);
         System.out.println("Đã thêm mới customer!");
     }
+    public void showInformationOfEmployee() throws IOException {
+        ReadCsvEmployee readCsvEmployee = new ReadCsvEmployee();
+        Map<String, Employee> mapEmployee = readCsvEmployee.readCsvEmployee();
+        for (Map.Entry<String, Employee> entry : mapEmployee.entrySet()) {
+            System.out.println("ID: " + entry.getKey() + " " + entry.getValue().toString());
+        }
+    }
+    public void bookingMovieTicket4D() {
 
+    }
+
+    public void findEmployee() {
+
+    }
     public void showInformationCustomers() throws FileNotFoundException {
         ReadCsvCustomer readCsvCustomer = new ReadCsvCustomer();
 
@@ -232,22 +273,6 @@ public class MainControllers extends Validation {
         String otherUtilities = inputOtherUltilities();
         String poolArea = inputPoolArea();
         int floors = inputFloors();
-//        System.out.println("Mã dịch vụ: ");
-//        String serviceCode = input.nextLine();
-//        System.out.println("Diện tích sử dụng: ");
-//        String areaUsed = input.nextLine();
-//        System.out.println("Giá thuê: ");
-//        double cost = Double.parseDouble(input.nextLine());
-//        System.out.println("Số người tối đa: ");
-//        int maxPeople = Integer.parseInt(input.nextLine());
-//        System.out.println("Rent type: ");
-//        String rentType = input.nextLine();
-//        System.out.println("Tiện ích khác ");
-//        String otherUtilities = input.nextLine();
-//        System.out.println("Diện tích hồ bơi: ");
-//        String poolArea = input.nextLine();
-//        System.out.println("Số tầng:  ");
-//        int floors = Integer.parseInt(input.nextLine());
         Villa villa = new Villa(id, name, areaUsed, cost, maxPeople, rentType, serviceCode,
                 roomStandard, otherUtilities, poolArea, floors);
         listVilla.add(villa);
@@ -284,7 +309,8 @@ public class MainControllers extends Validation {
         int maxPeople = inputMaxPeople();
         String rentType = inputRentType();
         String freeService = inputFreeService();
-        Room room = new Room(name, areaUsed, cost, maxPeople, rentType, id, freeService);
+        Room room = new Room( id,  name,  areaUsed,  cost,  maxPeople,  rentType,
+                 serviceCode,  freeService);
         listRoom.add(room);
         WriteCsvRoom.writeCsvRoom(listRoom);
         System.out.println("Da them moi Room!");
@@ -315,20 +341,22 @@ public class MainControllers extends Validation {
                 this.showServices();
                 break;
             case "4":
+                this.showAllNameVillaNotDuplicate();
                 this.showServices();
                 break;
             case "5":
+                this.showAllNameHouseNotDuplicate();
                 this.showServices();
                 break;
             case "6":
+                this.showAllNameRoomNotDuplicate();
                 this.showServices();
                 break;
             case "7":
                 this.displayMainMenu();
                 break;
             case "8":
-                flag = false;
-                System.exit(0);
+                System.exit(1);
                 break;
             default:
                 System.out.println("Giá trị nhập vào không chính xác. Vui lòng nhập lại");
@@ -349,9 +377,6 @@ public class MainControllers extends Validation {
         }
     }
 
-    private void showAllRoom() {
-    }
-
     private void showAllHouse() throws FileNotFoundException {
         ReadCsvHouse readCsvHouse = new ReadCsvHouse();
         listHouse = readCsvHouse.readCsvHouse();
@@ -360,6 +385,46 @@ public class MainControllers extends Validation {
             System.out.println("-------------------------------------------------------");
             System.out.println(house.showInfor());
             System.out.println("-------------------------------------------------------");
+        }
+    }
+    private void showAllRoom() throws FileNotFoundException {
+        ReadCsvRoom readCsvRoom = new ReadCsvRoom();
+        listRoom = readCsvRoom.readCsvRoom();
+        for (House house : listHouse
+        ) {
+            System.out.println("-------------------------------------------------------");
+            System.out.println(house.showInfor());
+            System.out.println("-------------------------------------------------------");
+        }
+    }
+    public void showAllNameVillaNotDuplicate() throws IOException {
+        ReadCsvVilla readCsvVilla = new ReadCsvVilla();
+        listVillaNotDuplicate = readCsvVilla.readCsvVillaNotDuplicate();
+        int i = 0;
+        for (String listVilla : listVillaNotDuplicate) {
+            i++;
+            System.out.println(i + "." + listVilla);
+            System.out.println("------------------------------------------------------------------------");
+        }
+    }
+    public void showAllNameHouseNotDuplicate() throws IOException {
+        ReadCsvHouse readCsvHouse = new ReadCsvHouse();
+        listHouseNotDuplicate = readCsvHouse.readCsvHouseNotDuplicate();
+        int i = 0;
+        for (String listHouse : listHouseNotDuplicate) {
+            i++;
+            System.out.println(i + "." + listHouse);
+            System.out.println("------------------------------------------------------------------------");
+        }
+    }
+    public void showAllNameRoomNotDuplicate() throws IOException {
+        ReadCsvRoom readCsvRoom = new ReadCsvRoom();
+        listRoomNotDuplicate = readCsvRoom.readCsvRoomNotDuplicate();
+        int i = 0;
+        for (String listRoom : listRoomNotDuplicate) {
+            i++;
+            System.out.println(i + "." + listRoom);
+            System.out.println("------------------------------------------------------------------------");
         }
     }
 

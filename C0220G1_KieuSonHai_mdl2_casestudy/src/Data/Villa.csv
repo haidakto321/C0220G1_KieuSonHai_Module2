@@ -1,2 +1,4 @@
-ID,Name,ServiceCode,Area,Cost,Max People,Rent type,Other ultilities,Pool area,Number of floors
-null,Villa,500,700.0,2,Year/Month/Day/Hour,SVVL-9090,Standard,food,50,4
+ID,Name,Area,Cost,Max People,Rent type,Service Code,Room standard,Other ultilities,Pool area,Number of floors
+null,Villa,500,1000.0,7,Year/Month/Day/Hour,SVVL-3300,Vip,car,40,4
+ID,Name,Area,Cost,Max People,Rent type,Service Code,Room standard,Other ultilities,Pool area,Number of floors
+null,Villa,300,700.0,4,Year/Month/Day/Hour,SVVL-0304,Normal,food,40,3
