@@ -21,6 +21,9 @@ public class WriteCsvCustomer {
         try {
             fileCustomer=new FileWriter("E:\\Java\\C0220G1_KieuSonHai_mdl2_casestudy\\src\\Data\\Customer.csv");
             for (Customer customer : listCustomer) {
+                if (listCustomer.get(0).equals("name")) {
+                    continue;
+                }
                 fileCustomer.append(FILE_HEADER);
                 fileCustomer.append(NEW_LINE);
                 fileCustomer.append(customer.getName());

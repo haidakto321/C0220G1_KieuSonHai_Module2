@@ -1,8 +1,5 @@
- name,  birthday,  gender,  CMND,  numberPhone,  email,  typeOfCustomer,  address,  services
+name,birthday,gender,CMND,  numberPhone,  email,  typeOfCustomer,  address,  services
 Kieu Son Hai,27/07/1999,Male,233216878,034903089,haison@mo.com,Normal,Da Da
- name,  birthday,  gender,  CMND,  numberPhone,  email,  typeOfCustomer,  address,  services
 Nguyen Thi Mai An,15/03/1996,Female,284906391,038123699,maina@ch.com,Vip,Gia Lai
- name,  birthday,  gender,  CMND,  numberPhone,  email,  typeOfCustomer,  address,  services
 Tran Van Toan,04/09/1990,Male,202954830,090516262,Vanch@po.com,Vip,Da Nang
- name,  birthday,  gender,  CMND,  numberPhone,  email,  typeOfCustomer,  address,  services
 Vo Nga My,08/08/1994,Male,109873205,090906132,thuathien@my.com,Normal,Quang Tri

@@ -1,5 +1,6 @@
 package Controllers;
 
+import Commons.CustomerComparator;
 import Models.Customer;
 
 import java.io.BufferedReader;
@@ -16,6 +17,7 @@ public class ReadCsvCustomer {
     }
 
     public ArrayList<Customer> readCsvCustomer()  {
+
         String line;
         try {
             readCustomer = new BufferedReader(new FileReader("E:\\Java\\C0220G1_KieuSonHai_mdl2_casestudy\\src\\Data\\Customer.csv"));
@@ -33,6 +35,7 @@ public class ReadCsvCustomer {
                         splitData[6],
                         splitData[7]);
                 listCustomer.add(customer);
+//                listCustomer.sort(new CustomerComparator());
             }
         } catch (IOException e) {
             e.printStackTrace();

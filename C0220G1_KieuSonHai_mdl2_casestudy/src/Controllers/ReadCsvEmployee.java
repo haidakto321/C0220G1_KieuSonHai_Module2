@@ -25,6 +25,10 @@ public class ReadCsvEmployee {
         String line;
         while ((line = readEmployee.readLine()) != null) {
             String[] splitData = line.split(",");
+
+            if (splitData[0].equals("id")) {
+                continue;
+            }
             Employee employee = new Employee(splitData[0],splitData[1], Integer.parseInt(splitData[2]), splitData[3]);
             listEmployee.add(employee);
         }
