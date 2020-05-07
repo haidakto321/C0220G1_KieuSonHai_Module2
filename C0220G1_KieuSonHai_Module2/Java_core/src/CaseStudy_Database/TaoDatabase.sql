@@ -15,6 +15,7 @@ DiaChi varchar(45)
 alter table nhanvien add foreign key (IDViTri) references vitri(IDViTri);
 alter table nhanvien add foreign key (IDTrinhDo) references trinhdo(IDTrinhDo);
 alter table nhanvien add foreign key (IDBoPhan) references bophan(IDBoPhan);
+alter table nhanvien modify HoTen varchar(45);
 
 create table ViTri(
 IDViTri int primary key,
@@ -52,6 +53,7 @@ IDDichVuDiKem int,
 SoLuong int
 );
 alter table hopdongchitiet add foreign key (IDDichVuDiKem) references dichvudikem(IDDichVuDiKem);
+alter table hopdongchitiet add foreign key (IDHopDong) references hopdong(IDHopDong);
 
 create table DichVuDiKem(
 IDDichVuDiKem int primary key,
@@ -72,7 +74,8 @@ IDKieuThue varchar(45),
 IDLoaiDichVu int,
 TrangThai varchar(45)
 );
--- alter table dichvu add foreign key (IDKieuThue) references kieuthue(IDKieuThue);
+alter table dichvu modify IDKieuThue int;
+ alter table dichvu add foreign key (IDKieuThue) references kieuthue(IDKieuThue);
 alter table dichvu add foreign key (IDLoaiDichVu) references loaidichvu(IDLoaiDichVu);
 
 create table KieuThue(
