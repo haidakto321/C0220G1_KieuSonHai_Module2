@@ -5,7 +5,9 @@
     <title>Title</title>
 </head>
 <body>
+<table>
 <h3>Tu can dich: ${eng}</h3></br>
 <h3>Dich ra: ${vie}</h3>
+</table>
 </body>
 </html>

@@ -16,7 +16,8 @@ public class DictionaryController {
     public String translate(@RequestParam String word, Model model) {
         String result = dictionary.translate(word);
         if(result==null) {
-            model.addAttribute("cantfind","Ko tim dc.");
+            model.addAttribute("eng",word);
+            model.addAttribute("vie","Khong có từ trong từ điển!");
         } else {
             model.addAttribute("vie",result);
             model.addAttribute("eng",word);
