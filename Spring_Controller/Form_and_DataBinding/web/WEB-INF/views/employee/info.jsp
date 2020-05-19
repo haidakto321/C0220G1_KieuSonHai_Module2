@@ -16,7 +16,7 @@
     </tr>
     <tr>
         <td>Contact Number :</td>
-        <td>${contactNumber}</td>
+        <td>${j}</td>
     </tr>
 </table>
 </body>

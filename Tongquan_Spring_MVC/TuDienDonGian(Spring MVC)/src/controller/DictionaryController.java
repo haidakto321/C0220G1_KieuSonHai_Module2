@@ -17,7 +17,7 @@ public class DictionaryController {
         String result = dictionary.translate(word);
         if(result==null) {
             model.addAttribute("eng",word);
-            model.addAttribute("vie","Khong có từ trong từ điển!");
+            model.addAttribute("vie","Không có từ trong từ điển!");
         } else {
             model.addAttribute("vie",result);
             model.addAttribute("eng",word);

@@ -14,7 +14,7 @@
     </div>
 </div>
 <table id = "products">
-    <thead>
+    <head>
     <tr>
         <th>Name</th>
         <th>Type</th>
@@ -23,7 +23,7 @@
         <th>Delete</th>
         <th>View</th>
     </tr>
-    </thead>
+    </head>
     <tbody>
     <tr th:each="row,rowStat : ${products}">
         <td th:text="${row.getName()}"></td>
